@@ -22,7 +22,7 @@ trait PostService {
 
   def listByDescendingOrder()(implicit ex: ExecutionContext): Future[Seq[Post]]
 
-  def update(id: Long, text: String, image: String)
+  def update(id: Long, text: String, imagePath: String, imageFile: File)
             (implicit ex: ExecutionContext, clock: Clock): Future[Post]
 
 }

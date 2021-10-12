@@ -47,13 +47,14 @@ class PostServiceImpl @Inject()(val postRepository: PostRepository,
     postRepository.listByDescendingOrder()
   }
 
-  override def update(id: Long, text: String, image: String)
+  override def update(id: Long, text: String, imagePath: String, imageFile: File)
             (implicit ex: ExecutionContext, clock: Clock): Future[Post] = {
+    val uri = fileRepository.saveFile(imagePath, imageFile)
     for {
       postOpt <- postRepository.findById(id)
       updatePost <- postOpt match {
         case Some(post) => postRepository.update(
-          Post(post.id, text, image, post.createdAt, post.createdBy)
+          Post(post.id, text, uri.toString, post.createdAt, post.createdBy)
         )
         case _ => Future.failed(PostNotFoundException())
       }

@@ -81,13 +81,11 @@ class PostController @Inject() (val postService: PostService,
       case Some(value) => PostForm.form.bindFromRequest.fold(
         errors => Future(BadRequest(errors.errorsAsJson)),
         form => {
-          value.file("picture").map(picture => {
-            val filename = Paths.get(picture.filename).getFileName
-            val path: Path = Paths.get(s"/tmp/picture/${filename}")
-            picture.ref.copyTo(path, true)
-            postService.update(id, form.text, path.toString)
-              .map(post => Ok(Json.toJson(post))).recover(exceptionHandlers)
-          }).getOrElse(Future.successful(BadRequest("Missing file.")))
+          val post: Future[Post] = for {
+            file <- Future.successful(value.files.head)
+            update <- postService.update(id, form.text, "images/" + file.filename, file.ref)
+          } yield update
+          post.map(p => Ok(Json.toJson(p)))
         }
       )
       case None => Future.successful(BadRequest)

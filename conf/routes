@@ -34,3 +34,5 @@ GET     /comments-ascending-order    controllers.comments.CommentController.list
 GET     /comments-descending-order   controllers.comments.CommentController.listByDescendingOrder()
 
 PUT     /comments/update/:id         controllers.comments.CommentController.update(id: Long)
+
+GET     /comments-post/:postId       controllers.comments.CommentController.listByPost(postId: Long)
