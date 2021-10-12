@@ -8,7 +8,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder
 import com.typesafe.config.Config
 import javax.inject.Inject
 
-class AWSFileRepository @Inject()(config: Config) extends FileRepository {
+class AWSFileRepository @Inject()(val config: Config) extends FileRepository {
 
   val BUCKET_NAME = "social-media-api-images"
   val REGION = "sa-east-1"

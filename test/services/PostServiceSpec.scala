@@ -159,14 +159,14 @@ class PostServiceSpec(implicit ev: ExecutionEnv) extends Specification {
           val post = Post(1, "randomtext", "randomPath", Timestamp.valueOf(LocalDateTime.now(defaultClock)), 1)
           val service = PostFixtures.postTestService(posts = ArrayBuffer(post))
 
-          val result: Future[Post] = service.update(1, "random-text", "random-path")
+          val result: Future[Post] = service.update(1, "random-text", "random-path", new File("/randompath"))
 
           result must beAnInstanceOf[Post].await
         }
         "must return PostNotFoundExeption" >> {
           val service = PostFixtures.postTestService()
 
-          val result: Future[Post] = service.update(1, "random-text", "random-path")
+          val result: Future[Post] = service.update(1, "random-text", "random-path", new File("/randompath"))
 
           result must throwA[PostNotFoundException].await
         }

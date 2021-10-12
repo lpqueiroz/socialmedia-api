@@ -63,7 +63,7 @@ object PostFixtures {
 
     override def listByDescendingOrder()(implicit ex: ExecutionContext): Future[Seq[Post]] = result
 
-    override def update(id: Long, text: String, image: String)(implicit ex: ExecutionContext, clock: Clock): Future[Post] = result.map(_.head)
+    override def update(id: Long, text: String, image: String, imageFile: File)(implicit ex: ExecutionContext, clock: Clock): Future[Post] = result.map(_.head)
   }
 
 }
