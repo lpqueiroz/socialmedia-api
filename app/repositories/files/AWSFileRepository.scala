@@ -12,7 +12,9 @@ class AWSFileRepository @Inject()(config: Config) extends FileRepository {
 
   val BUCKET_NAME = "social-media-api-images"
   val REGION = "sa-east-1"
-  val creds = new BasicAWSCredentials("AKIA4YVQUTEL6ITATTCU", "Qsbe4Cxx2FB9eSNXhhQud6DCO8dWVO3yV3FZsJNp")
+  val accessKey = config.getString("aws.accessKey")
+  val secretKey = config.getString("aws.secretKey")
+  val creds = new BasicAWSCredentials(accessKey, secretKey)
   val s3Client = AmazonS3ClientBuilder
     .standard()
     .withRegion("sa-east-1")
