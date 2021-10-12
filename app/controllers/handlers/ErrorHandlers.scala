@@ -41,6 +41,7 @@ trait ErrorHandlers {
   def exceptionHandlers: PartialFunction[Throwable, Result] =
     handleCommentExceptions orElse
       handlePostExceptions orElse
-      handleUserExceptions
+      handleUserExceptions orElse
+      handleDefaultExceptions
 
 }
