@@ -13,7 +13,7 @@ This is a Social Media API which uses the following technologies:
 
 This api is deployed on Heroku: https://social-media-v1-api.herokuapp.com/
 
-To run the tests in the terminal run the following command: `sbt test`
+Run the tests in the terminal with the following command: `sbt test`
 
 ### Endpoints:
 
