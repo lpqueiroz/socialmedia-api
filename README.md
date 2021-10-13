@@ -7,9 +7,8 @@ This is a Social Media API which uses the following technologies:
 3. Slick
 4. PostgreSQL
 5. Cats
-6. Auth0
-7. JWT 
-8. AWS-JAVA-SDK Library.
+6. Auth0/JWT
+7. AWS-JAVA-SDK Library.
 
 This api is deployed on Heroku: https://social-media-v1-api.herokuapp.com/
 
