@@ -16,7 +16,6 @@ libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-slick-evolutions" % "4.0.2",
   "org.postgresql" % "postgresql" % "42.2.5",
   "com.amazonaws" % "aws-java-sdk" % "1.11.71",
-  "org.apache.hadoop" % "hadoop-common" % "3.3.1",
   "com.pauldijou" %% "jwt-play" % "0.19.0",
   "com.pauldijou" %% "jwt-core" % "0.19.0",
   "com.auth0" % "jwks-rsa" % "0.6.1",
