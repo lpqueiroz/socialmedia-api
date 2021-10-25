@@ -50,6 +50,8 @@ class CommentServiceSpec(implicit ev: ExecutionEnv) extends Specification {
       override def findById(userId: Long)(implicit ex: ExecutionContext): Future[Option[User]] = Future.failed(new Exception())
 
       override def list()(implicit ex: ExecutionContext): Future[Seq[User]] = Future.failed(new Exception())
+
+      override def findByEmail(email: String)(implicit ex: ExecutionContext): Future[Option[User]] = Future.failed(new Exception())
     }, new PostRepository {
       override def list()(implicit ex: ExecutionContext): Future[Seq[Post]] = Future.failed(new Exception())
 

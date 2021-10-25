@@ -14,4 +14,6 @@ trait UserRepository {
 
   def list()(implicit ex: ExecutionContext): Future[Seq[User]]
 
+  def findByEmail(email: String)(implicit ex: ExecutionContext): Future[Option[User]]
+
 }

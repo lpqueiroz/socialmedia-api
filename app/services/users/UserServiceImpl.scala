@@ -2,7 +2,7 @@ package services.users
 
 import cats.data.Validated.{Invalid, Valid}
 import javax.inject.Inject
-import models.User.User
+import models.User.{EmailAddressAlreadyExistsException, User}
 import repositories.users.UserRepository
 import validation.UserValidator
 
@@ -12,9 +12,10 @@ class UserServiceImpl @Inject()(val userRepository: UserRepository) extends User
 
   override def register(name: String, email: String)(implicit ex: ExecutionContext): Future[User] = {
     for {
-      users <- userRepository.list()
-      emails <- Future.successful(users.map(_.email))
-      validatedUser <- Future.successful(UserValidator.validateUser(name, email, emails))
+      userOpt <- userRepository.findByEmail(email)
+      _ <- if (userOpt.nonEmpty) Future.failed(EmailAddressAlreadyExistsException(userOpt.get.email))
+      else Future.successful(())
+      validatedUser <- Future.successful(UserValidator.validateUser(name, email))
       user <- validatedUser match {
         case Invalid(e) => Future.failed(e)
         case Valid(a) => userRepository.register(a)

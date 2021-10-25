@@ -24,6 +24,8 @@ object UserFixtures {
 
       override def list()(implicit ex: ExecutionContext): Future[Seq[User]] = Future.successful(userData)
 
+      override def findByEmail(email: String)(implicit ex: ExecutionContext): Future[Option[User]] = Future.successful(userData.headOption)
+
     }
 
   def userStubService[A](result: Future[User]): UserService = new UserService {

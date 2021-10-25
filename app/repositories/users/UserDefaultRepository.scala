@@ -32,4 +32,9 @@ class UserDefaultRepository @Inject()(override protected val dbConfigProvider: D
     )
   }
 
+  override def findByEmail(email: String)(implicit ex: ExecutionContext): Future[Option[User]] = {
+    dbConfig.db.run(
+      usersTable.filter(_.email === email).result.headOption
+    )
+  }
 }

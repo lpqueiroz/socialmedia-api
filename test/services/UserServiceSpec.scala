@@ -25,6 +25,8 @@ class UserServiceSpec(implicit ev: ExecutionEnv) extends Specification {
       override def findById(userId: Long)(implicit ex: ExecutionContext): Future[Option[User]] = Future.failed(new Exception())
 
       override def list()(implicit ex: ExecutionContext): Future[Seq[User]] = Future.failed(new Exception())
+
+      override def findByEmail(email: String)(implicit ex: ExecutionContext): Future[Option[User]] = Future.failed(new Exception())
     }
   )
 
